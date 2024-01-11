@@ -1,4 +1,4 @@
-name:  Publish Docker image
+name: Publish Docker image
 
 on:
   push:
@@ -9,22 +9,19 @@ jobs:
   build: 
     runs-on: ubuntu-latest
 
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-        
-      - name: set up.net
+
+      - name: Set up .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '6.x'
 
-     -name: restore and build
-      run: |
-        dotnet restore
-        dotnet build
+      - name: Restore and build
+        run: |
+          dotnet restore
+          dotnet build
 
-    -name: build docker image
-     run: docker build -t    mikaeljonsson1/kyh-docker-example .
-
-              
+      - name: Build Docker image
+        run: docker build -t mikaeljonsson1/kyh-docker-example .
